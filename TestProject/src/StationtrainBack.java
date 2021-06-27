@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 
 public class StationtrainBack {
 
@@ -29,10 +30,10 @@ public class StationtrainBack {
 	private int num1,num2;
 	private String selected = "";
 	private String[][] selectArray = new String [2][7];
-	private JTextField textField;
-	private JTextField textField_1;
 	private JButton btnNewButton_1;
-	private JButton btnNewButton_2;;
+	private JButton btnNewButton_2;
+	private JPanel panel;
+	private JLabel lblNewLabel_1;;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class StationtrainBack {
 	 */
 	public StationtrainBack() {
 		
-		//initialize();
+		initialize();
 		
 	}
 	public void BackTime(String Date , String Time ,String Start , String End , String type , String[] array,String bDate , String bTime ) {
@@ -111,6 +112,16 @@ public class StationtrainBack {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		panel = new JPanel();
+		panel.setBounds(76, 635, 561, 19);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(0, 0, 304, 18);
+		panel.add(lblNewLabel_1);
+		
+		
 		lblNewLabel = new JLabel("\u55E8");
 		lblNewLabel.setFont(new Font("標楷體", Font.BOLD | Font.ITALIC, 30));
 		lblNewLabel.setBounds(35, 12, 525, 50);
@@ -159,11 +170,11 @@ public class StationtrainBack {
 			public void mouseClicked(MouseEvent e) {
 				num2 = table_1.getSelectedRow();
 				
-				selectArray[1][0] = "去程";
-				selectArray[1][1] = Date;
+				selectArray[1][0] = "回程";
+				selectArray[1][1] = BDate;
 				selectArray[1][2] = table_1.getValueAt(num2, 0).toString();
-				selectArray[1][3] = Start;
-				selectArray[1][4] = End;
+				selectArray[1][3] = End;
+				selectArray[1][4] = Start;
 				selectArray[1][5] = table_1.getValueAt(num2, 3).toString();
 				selectArray[1][6] = table_1.getValueAt(num2, 4).toString();
 			}
@@ -181,13 +192,8 @@ public class StationtrainBack {
         dm2.setDataVector(Bdata, columns);
         table_1.setModel(dm2);
         
-        lblNewLabel1_1 = new JLabel("\u8A02\u7968\u660E\u7D30");
-        lblNewLabel1_1.setFont(new Font("標楷體", Font.BOLD | Font.ITALIC, 30));
-        lblNewLabel1_1.setBounds(35, 516, 471, 50);
-        frame.getContentPane().add(lblNewLabel1_1);
-        
         scrollPane_2 = new JScrollPane();
-        scrollPane_2.setBounds(75, 578, 572, 55);
+        scrollPane_2.setBounds(75, 578, 572, 80);
         frame.getContentPane().add(scrollPane_2);
         
         table_2 = new JTable();
@@ -225,25 +231,22 @@ public class StationtrainBack {
         			var += "大學生優惠票"+Integer.parseInt(ticketArray[4])+"張"+" | ";
         			
         		}
-        		textField.setText("車廂 : "+Type);
-        		textField_1.setText("票數 : "+var);
+        		lblNewLabel_1.setText("車廂 : "+Type+"   "+"票數 : "+var);
         	}
         });
         btnNewButton.setFont(new Font("新細明體", Font.PLAIN, 20));
         btnNewButton.setBounds(544, 516, 103, 33);
         frame.getContentPane().add(btnNewButton);
         
-        textField = new JTextField();
-        textField.setBounds(75, 632, 116, 24);
-        frame.getContentPane().add(textField);
-        textField.setColumns(10);
-        
-        textField_1 = new JTextField();
-        textField_1.setBounds(190, 632, 457, 24);
-        frame.getContentPane().add(textField_1);
-        textField_1.setColumns(10);
-        
         btnNewButton_1 = new JButton("\u78BA\u8A8D\u8ECA\u6B21");
+        btnNewButton_1.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		
+        		windowInputUID W = new windowInputUID();
+        		//輸入uid                           ////////////////////
+        	}
+        });
         btnNewButton_1.setForeground(new Color(0, 0, 0));
         btnNewButton_1.setFont(new Font("新細明體", Font.PLAIN, 20));
         btnNewButton_1.setBounds(515, 682, 132, 39);
@@ -261,6 +264,11 @@ public class StationtrainBack {
         btnNewButton_2.setFont(new Font("新細明體", Font.PLAIN, 20));
         btnNewButton_2.setBounds(76, 682, 132, 39);
         frame.getContentPane().add(btnNewButton_2);
+        
+        lblNewLabel1_1 = new JLabel("\u8A02\u7968\u660E\u7D30");
+        lblNewLabel1_1.setBounds(35, 530, 125, 36);
+        frame.getContentPane().add(lblNewLabel1_1);
+        lblNewLabel1_1.setFont(new Font("標楷體", Font.BOLD | Font.ITALIC, 30));
         
         
         

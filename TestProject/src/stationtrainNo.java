@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 public class stationtrainNo {
 
@@ -37,14 +38,12 @@ public class stationtrainNo {
 	private JLabel lblNewLabel_1;
 	private JTable table_1;
 	private JScrollPane scrollPane_1;
-	private JTextField textField_2;
 	private String selected = "";
 	private JButton btnNewButton;
 	private int num;
 	private String Date,Start,End,Time,Type,TrainNo;
 	private String [] ticketArray = new String [5];
-	private JTextField textField3;
-	private JTextField textField4;
+	private JLabel lblNewLabel_2;
 	private JButton btnNewButton2_1;
 	
 
@@ -142,15 +141,10 @@ public class stationtrainNo {
 		frame = new JFrame();
 		frame.getContentPane().setForeground(SystemColor.activeCaption);frame.setAlwaysOnTop(true);
 		frame.getContentPane().setEnabled(false);
-		frame.setBounds(100, 100, 776, 679);
+		frame.setBounds(100, 100, 767, 590);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
-		
-		textField4 = new JTextField();
-		textField4.setColumns(10);
-		textField4.setBounds(149, 497, 552, 21);
-		frame.getContentPane().add(textField4);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(127, 81, 500, 173);
@@ -165,13 +159,13 @@ public class stationtrainNo {
         lblNewLabel_1 = new JLabel("\u8A02\u4F4D\u660E\u7D30 :");
         lblNewLabel_1.setForeground(Color.DARK_GRAY);
         lblNewLabel_1.setFont(new Font("標楷體", Font.BOLD | Font.ITALIC, 30));
-        lblNewLabel_1.setBounds(33, 401, 159, 48);
+        lblNewLabel_1.setBounds(31, 315, 159, 48);
         frame.getContentPane().add(lblNewLabel_1);
         
         
         
         scrollPane_1 = new JScrollPane();
-        scrollPane_1.setBounds(58, 459, 643, 39);
+        scrollPane_1.setBounds(58, 375, 643, 61);
         frame.getContentPane().add(scrollPane_1);
         
         table_1 = new JTable();
@@ -179,11 +173,6 @@ public class stationtrainNo {
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(columns2);
         table_1.setModel(dtm);
-        
-        textField_2 = new JTextField();
-        textField_2.setBounds(127, 264, 382, 32);
-        frame.getContentPane().add(textField_2);
-        textField_2.setColumns(10);
         
         btnNewButton = new JButton("Select");
         btnNewButton.setBackground(new Color(230,230,230));
@@ -221,9 +210,7 @@ public class stationtrainNo {
         			var += "大學生優惠票"+Integer.parseInt(ticketArray[4])+"張"+" | ";
         			
         		}
-        		textField4.setText("票數 : "+var);
-        		
-        		textField3.setText("車廂 : "+Type);
+        		lblNewLabel_2.setText("票數 : "+var+"   "+"車廂 : "+Type);
         	}
         });
         btnNewButton.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -239,16 +226,19 @@ public class stationtrainNo {
         lblNewLabel.setText("去程 :"+Start+"-"+End+" "+Date);
         
         JButton btnNewButton2 = new JButton("\u78BA\u8A8D\u8ECA\u6B21");
+        btnNewButton2.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		////////////////////////////////////////////////////選擇了row幾 
+        		frame.setAlwaysOnTop(false);
+        		windowInputUID W = new windowInputUID();//輸入uid
+        	}
+        });
         btnNewButton2.setBackground(new Color(230,230,230));
         btnNewButton2.setOpaque(true);
         btnNewButton2.setFont(new Font("新細明體", Font.PLAIN, 20));
-        btnNewButton2.setBounds(569, 553, 132, 39);
+        btnNewButton2.setBounds(569, 481, 132, 39);
         frame.getContentPane().add(btnNewButton2);
-        
-        textField3 = new JTextField();
-        textField3.setBounds(58, 497, 93, 21);
-        frame.getContentPane().add(textField3);
-        textField3.setColumns(10);
         
         btnNewButton2_1 = new JButton("\u91CD\u65B0\u67E5\u8A62");
         btnNewButton2_1.setBackground(new Color(230,230,230));
@@ -261,23 +251,19 @@ public class stationtrainNo {
         btnNewButton2_1.setOpaque(true);
         btnNewButton2_1.setForeground(Color.DARK_GRAY);
         btnNewButton2_1.setFont(new Font("新細明體", Font.PLAIN, 20));
-        btnNewButton2_1.setBounds(58, 553, 132, 39);
+        btnNewButton2_1.setBounds(58, 481, 132, 39);
         frame.getContentPane().add(btnNewButton2_1);
         
+        JPanel panel = new JPanel();
+        panel.setBounds(43, 416, 656, 20);
+        frame.getContentPane().add(panel);
+        panel.setLayout(null);
+        
+        lblNewLabel_2 = new JLabel("New label");
+        lblNewLabel_2.setBounds(21, 0, 321, 18);
+        panel.add(lblNewLabel_2);
+        
         dm.setDataVector(data, columns);
-        table.addMouseListener(new MouseAdapter() {
-			@Override
-			
-			public void mouseClicked(MouseEvent e) {
-				num = table.getSelectedRow();
-				for (int i = 0; i < table.getColumnCount(); i++) {
-					selected = selected +table.getValueAt(num, i)+" ";
-				}
-				textField_2.setText(selected);
-				selected = "";
-				
-			}
-		});
         
         
 		
