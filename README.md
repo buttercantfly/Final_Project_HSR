@@ -1,8 +1,8 @@
-## Simple HSR Ticket Booking System
+## HSR Booking System
 
 This project is the final assignment for the ESOE OOP course, developed in Java.
 
-It is a simple high-speed rail booking system that supports the following basic operations:
+It is a simple (very simple) high-speed rail booking system that supports the following basic operations:
 - Ticket booking
 - Ticket information inquiry
 
